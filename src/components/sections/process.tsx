@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/fade-in";
+
 const steps = [
   {
     number: 1,
@@ -23,15 +25,18 @@ export function Process() {
   return (
     <section id="process" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            How We Work
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A streamlined process designed to move fast without cutting corners.
-          </p>
-        </div>
+        <FadeIn>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              How We Work
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              A streamlined process designed to move fast without cutting corners.
+            </p>
+          </div>
+        </FadeIn>
 
+        <FadeIn delay={200}>
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {/* Dashed connector line (desktop only) */}
           <div className="hidden md:block absolute top-5 left-[calc(16.67%+1.25rem)] right-[calc(16.67%+1.25rem)] border-t-2 border-dashed border-border" />
@@ -48,6 +53,7 @@ export function Process() {
             </div>
           ))}
         </div>
+        </FadeIn>
       </div>
     </section>
   );

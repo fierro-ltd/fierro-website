@@ -1,5 +1,6 @@
 import { Bot, FileSearch, Code, Lightbulb } from "lucide-react";
 import { BentoGrid, BentoCard } from "@/components/bento-grid";
+import { FadeIn } from "@/components/fade-in";
 import { services } from "@/data/services";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -13,16 +14,19 @@ export function Services() {
   return (
     <section id="services" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            What We Do
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            We specialise in building intelligent software — from AI-native
-            applications to production-grade platforms.
-          </p>
-        </div>
+        <FadeIn>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              What We Do
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              We specialise in building intelligent software — from AI-native
+              applications to production-grade platforms.
+            </p>
+          </div>
+        </FadeIn>
 
+        <FadeIn delay={200}>
         <BentoGrid>
           {services.map((service) => {
             const Icon = iconMap[service.icon];
@@ -39,6 +43,7 @@ export function Services() {
             );
           })}
         </BentoGrid>
+        </FadeIn>
       </div>
     </section>
   );

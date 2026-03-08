@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { BentoCard } from "@/components/bento-grid";
+import { FadeIn } from "@/components/fade-in";
 import { Mail, Github, Linkedin } from "lucide-react";
 
 export function Contact() {
@@ -23,15 +24,18 @@ export function Contact() {
   return (
     <section id="contact" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Let's Build Something Together
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind? We'd love to hear about it.
-          </p>
-        </div>
+        <FadeIn>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              Let's Build Something Together
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Have a project in mind? We'd love to hear about it.
+            </p>
+          </div>
+        </FadeIn>
 
+        <FadeIn delay={200}>
         <div className="max-w-2xl mx-auto">
           <BentoCard className="p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -123,6 +127,7 @@ export function Contact() {
             </div>
           </div>
         </div>
+        </FadeIn>
       </div>
     </section>
   );
