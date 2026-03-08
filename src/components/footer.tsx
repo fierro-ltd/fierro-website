@@ -6,7 +6,8 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} FIERRO LTD. All rights reserved.
+            <p>&copy; {new Date().getFullYear()} FIERRO LTD. All rights reserved.</p>
+            <p className="mt-1">Built with ❤️ &amp; 🧉 in London</p>
           </div>
           <div className="flex items-center gap-4">
             <a

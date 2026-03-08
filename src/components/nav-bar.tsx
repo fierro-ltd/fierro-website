@@ -17,8 +17,8 @@ export function NavBar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background/60 backdrop-blur-xl border-b border-border/30">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
-        <Link to="/" className="font-display text-xl font-bold tracking-tight">
-          FIERRO
+        <Link to="/" className="font-[family-name:Afacad] text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity duration-200">
+          FIERRO LTD
         </Link>
 
         {/* Desktop nav */}
