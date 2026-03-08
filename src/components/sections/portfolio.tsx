@@ -5,26 +5,29 @@ import { projects } from "@/data/projects";
 
 export function Portfolio() {
   return (
-    <section id="portfolio" className="py-24">
+    <section id="portfolio" className="relative py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+          <div className="text-center mb-16">
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
+              Portfolio
+            </p>
+            <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4 text-balance">
               Our Work
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Live demos and production systems we've built for clients and as
-              open-source references.
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+              Live demos and production systems we&rsquo;ve built for clients
+              and as open-source references.
             </p>
           </div>
         </FadeIn>
 
         <FadeIn delay={200}>
-        <BentoGrid>
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </BentoGrid>
+          <BentoGrid>
+            {projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </BentoGrid>
         </FadeIn>
       </div>
     </section>

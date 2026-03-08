@@ -30,15 +30,17 @@ function PortfolioDetailPage() {
   if (!project) {
     return (
       <div className="mx-auto max-w-4xl px-4 py-16 text-center">
-        <h1 className="text-4xl font-bold mb-4">Project not found</h1>
+        <h1 className="font-display text-4xl font-bold mb-4">
+          Project Not Found
+        </h1>
         <p className="text-muted-foreground mb-8">
-          The project you're looking for doesn't exist.
+          The project you&rsquo;re looking for doesn&rsquo;t exist.
         </p>
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Back to Home
         </Link>
       </div>
@@ -53,9 +55,9 @@ function PortfolioDetailPage() {
       {/* Back link */}
       <Link
         to="/"
-        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 mb-8"
       >
-        <ArrowLeft className="h-4 w-4" />
+        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         Back to Home
       </Link>
 
@@ -68,15 +70,14 @@ function PortfolioDetailPage() {
       />
 
       {/* Tag badge */}
-      <Badge
-        variant="outline"
-        className={cn("mb-4", tagColor)}
-      >
+      <Badge variant="outline" className={cn("mb-4", tagColor)}>
         {project.tag}
       </Badge>
 
       {/* Title */}
-      <h1 className="text-4xl font-bold mb-6">{project.title}</h1>
+      <h1 className="font-display text-4xl md:text-5xl font-bold mb-6 text-balance">
+        {project.title}
+      </h1>
 
       {/* Long description */}
       <p className="text-lg text-muted-foreground leading-relaxed mb-12">
@@ -85,11 +86,16 @@ function PortfolioDetailPage() {
 
       {/* Features section */}
       <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-6">Key Features</h2>
+        <h2 className="font-display text-2xl font-semibold mb-6">
+          Key Features
+        </h2>
         <ul className="space-y-3">
           {project.features.map((feature) => (
             <li key={feature} className="flex items-start gap-3">
-              <Check className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
+              <Check
+                className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0"
+                aria-hidden="true"
+              />
               <span className="text-muted-foreground">{feature}</span>
             </li>
           ))}
@@ -98,10 +104,16 @@ function PortfolioDetailPage() {
 
       {/* Tech stack section */}
       <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-6">Tech Stack</h2>
+        <h2 className="font-display text-2xl font-semibold mb-6">
+          Tech Stack
+        </h2>
         <div className="flex flex-wrap gap-2">
           {project.techStack.map((tech) => (
-            <Badge key={tech} variant="secondary" className="text-sm px-3 py-1">
+            <Badge
+              key={tech}
+              variant="secondary"
+              className="text-sm font-mono px-3 py-1"
+            >
               {tech}
             </Badge>
           ))}
@@ -109,14 +121,17 @@ function PortfolioDetailPage() {
       </div>
 
       {/* View Live Demo button */}
-      <Button asChild size="lg" className="text-base">
+      <Button asChild size="lg" className="text-base group">
         <a
           href={project.demoUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
           View Live Demo
-          <ExternalLink className="ml-2 h-4 w-4" />
+          <ExternalLink
+            className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            aria-hidden="true"
+          />
         </a>
       </Button>
     </div>

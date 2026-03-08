@@ -15,9 +15,9 @@ export function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-lg border-b border-border/50">
+    <header className="sticky top-0 z-50 w-full bg-background/60 backdrop-blur-xl border-b border-border/30">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
-        <Link to="/" className="text-xl font-bold tracking-tight">
+        <Link to="/" className="font-display text-xl font-bold tracking-tight">
           FIERRO
         </Link>
 
@@ -27,7 +27,7 @@ export function NavBar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -54,13 +54,13 @@ export function NavBar() {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-lg">
+        <div className="md:hidden border-t border-border/30 bg-background/80 backdrop-blur-xl">
           <div className="px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}

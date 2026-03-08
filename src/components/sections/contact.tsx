@@ -22,111 +22,118 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="relative py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Let's Build Something Together
+          <div className="text-center mb-16">
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
+              Contact
+            </p>
+            <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4 text-balance">
+              Let&rsquo;s Build Something Together
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Have a project in mind? We'd love to hear about it.
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+              Have a project in mind? We&rsquo;d love to hear about it.
             </p>
           </div>
         </FadeIn>
 
         <FadeIn delay={200}>
-        <div className="max-w-2xl mx-auto">
-          <BentoCard className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium mb-1.5"
-                  >
-                    Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    placeholder="Your name"
-                    required
-                  />
+          <div className="max-w-2xl mx-auto">
+            <BentoCard className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium mb-1.5"
+                    >
+                      Name
+                    </label>
+                    <Input
+                      id="name"
+                      name="name"
+                      autoComplete="name"
+                      placeholder="Your name…"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium mb-1.5"
+                    >
+                      Email
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="you@company.com…"
+                      spellCheck={false}
+                      required
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium mb-1.5"
-                  >
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="you@company.com"
-                    required
-                  />
-                </div>
-              </div>
 
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-1.5"
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium mb-1.5"
+                  >
+                    Message
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    autoComplete="off"
+                    placeholder="Tell us about your project…"
+                    rows={5}
+                    required
+                  />
+                </div>
+
+                <Button type="submit" size="lg" className="w-full">
+                  Send Message
+                </Button>
+              </form>
+            </BentoCard>
+
+            {/* Direct contact links */}
+            <div className="mt-8 text-center">
+              <p className="text-sm text-muted-foreground mb-4">
+                Or reach out directly
+              </p>
+              <div className="flex items-center justify-center gap-6">
+                <a
+                  href="mailto:hello@fierro.co.uk"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  placeholder="Tell us about your project..."
-                  rows={5}
-                  required
-                />
+                  <Mail className="size-4" aria-hidden="true" />
+                  hello@fierro.co.uk
+                </a>
+                <a
+                  href="https://github.com/fierro-ltd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                >
+                  <Github className="size-4" aria-hidden="true" />
+                  GitHub
+                </a>
+                <a
+                  href="https://linkedin.com/company/fierro-ltd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                >
+                  <Linkedin className="size-4" aria-hidden="true" />
+                  LinkedIn
+                </a>
               </div>
-
-              <Button type="submit" size="lg" className="w-full">
-                Send Message
-              </Button>
-            </form>
-          </BentoCard>
-
-          {/* Direct contact links */}
-          <div className="mt-8 text-center">
-            <p className="text-sm text-muted-foreground mb-4">
-              Or reach out directly
-            </p>
-            <div className="flex items-center justify-center gap-6">
-              <a
-                href="mailto:hello@fierro.co.uk"
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Mail className="size-4" />
-                hello@fierro.co.uk
-              </a>
-              <a
-                href="https://github.com/fierro-ltd"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Github className="size-4" />
-                GitHub
-              </a>
-              <a
-                href="https://linkedin.com/company/fierro-ltd"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Linkedin className="size-4" />
-                LinkedIn
-              </a>
             </div>
           </div>
-        </div>
         </FadeIn>
       </div>
     </section>
