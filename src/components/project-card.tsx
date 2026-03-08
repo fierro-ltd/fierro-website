@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { ExternalLink } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { BentoCard } from "@/components/bento-grid";
 import type { Project } from "@/types";
 import { cn } from "@/lib/utils";
@@ -19,23 +18,16 @@ export function ProjectCard({ project }: { project: Project }) {
     <Link
       to="/portfolio/$slug"
       params={{ slug: project.slug }}
-      className={cn(
-        "block",
-        project.gridSpan === "wide" && "lg:col-span-2"
-      )}
+      className="block"
     >
       <BentoCard className="h-full flex flex-col">
         {/* Gradient header */}
         <div
           className={cn(
-            "h-32 rounded-lg bg-gradient-to-br mb-4",
+            "h-28 rounded-lg bg-gradient-to-br mb-4",
             gradient
           )}
         />
-
-        <Badge variant="secondary" className="w-fit mb-3">
-          {project.tag}
-        </Badge>
 
         <h3 className="font-display text-lg font-semibold mb-2">
           {project.title}
@@ -45,28 +37,8 @@ export function ProjectCard({ project }: { project: Project }) {
           {project.description}
         </p>
 
-        {/* Bottom row */}
-        <div className="flex flex-wrap items-center gap-2 mt-auto">
-          <div className="flex flex-wrap gap-1.5 flex-1 min-w-0">
-            {project.techStack.slice(0, 4).map((tech) => (
-              <Badge
-                key={tech}
-                variant="outline"
-                className="text-[10px] font-mono px-1.5 py-0 text-muted-foreground"
-              >
-                {tech}
-              </Badge>
-            ))}
-            {project.techStack.length > 4 && (
-              <Badge
-                variant="outline"
-                className="text-[10px] px-1.5 py-0 text-muted-foreground tabular-nums"
-              >
-                +{project.techStack.length - 4}
-              </Badge>
-            )}
-          </div>
-
+        {/* Demo link */}
+        <div className="flex justify-end mt-auto">
           <button
             type="button"
             onClick={(e) => {

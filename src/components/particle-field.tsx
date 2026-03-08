@@ -149,13 +149,21 @@ export function ParticleField() {
     };
     window.addEventListener("resize", onResize, { passive: true });
 
-    // Theme observer — update particle color based on dark/light mode
+    // Theme observer — update particle color and blending based on dark/light mode
     const updateColor = () => {
       const isDark = document.documentElement.classList.contains("dark");
       particleMaterial.uniforms.uColor.value.set(
-        isDark ? 0x6366f1 : 0x4f46e5
+        isDark ? 0x6366f1 : 0x3730a3
       );
-      particleMaterial.uniforms.uOpacity.value = isDark ? 0.6 : 0.35;
+      particleMaterial.uniforms.uOpacity.value = isDark ? 0.6 : 0.7;
+      particleMaterial.blending = isDark
+        ? THREE.AdditiveBlending
+        : THREE.NormalBlending;
+      particleMaterial.needsUpdate = true;
+      lineMaterial.blending = isDark
+        ? THREE.AdditiveBlending
+        : THREE.NormalBlending;
+      lineMaterial.needsUpdate = true;
     };
     updateColor();
 
@@ -225,9 +233,9 @@ export function ParticleField() {
       const lineCol = lineGeometry.getAttribute("color")
         .array as Float32Array;
       const isDark = document.documentElement.classList.contains("dark");
-      const baseR = isDark ? 0.39 : 0.31;
-      const baseG = isDark ? 0.4 : 0.27;
-      const baseB = isDark ? 0.95 : 0.89;
+      const baseR = isDark ? 0.39 : 0.22;
+      const baseG = isDark ? 0.4 : 0.19;
+      const baseB = isDark ? 0.95 : 0.64;
 
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         for (let j = i + 1; j < PARTICLE_COUNT; j++) {
@@ -240,7 +248,7 @@ export function ParticleField() {
 
           if (dist < CONNECTION_DISTANCE) {
             const alpha =
-              (1 - dist / CONNECTION_DISTANCE) * (isDark ? 0.15 : 0.08);
+              (1 - dist / CONNECTION_DISTANCE) * (isDark ? 0.15 : 0.18);
 
             linePos[lineIdx * 6] = posArr[i * 3];
             linePos[lineIdx * 6 + 1] = posArr[i * 3 + 1];

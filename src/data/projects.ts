@@ -29,7 +29,6 @@ export const projects: Project[] = [
       "Docker",
     ],
     demoUrl: "https://fullstack-solution-template.demos.fierro.co.uk",
-    gridSpan: "wide",
   },
   {
     slug: "document-compliance",
