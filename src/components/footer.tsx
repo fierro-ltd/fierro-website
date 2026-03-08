@@ -13,6 +13,7 @@ export function Footer() {
               href="https://github.com/fierro-ltd"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Github className="h-5 w-5" />
@@ -21,12 +22,14 @@ export function Footer() {
               href="https://linkedin.com/company/fierro-ltd"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Linkedin className="h-5 w-5" />
             </a>
             <a
               href="mailto:hello@fierro.co.uk"
+              aria-label="Email"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Mail className="h-5 w-5" />

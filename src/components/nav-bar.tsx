@@ -40,6 +40,7 @@ export function NavBar() {
             variant="ghost"
             size="icon"
             className="md:hidden"
+            aria-label="Toggle menu"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? (
