@@ -4,6 +4,7 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
   --color-foreground: var(--foreground);
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-display: "Outfit", "Plus Jakarta Sans", system-ui, sans-serif;
@@ -41,6 +42,7 @@
   color-scheme: light;
   --radius: 0.625rem;
   --background: oklch(0.98 0.005 60);
+  --background-alt: oklch(0.95 0.008 270);
   --foreground: oklch(0.12 0.02 270);
   --card: oklch(1 0 0 / 70%);
   --card-foreground: oklch(0.12 0.02 270);
@@ -69,6 +71,7 @@
 .dark {
   color-scheme: dark;
   --background: oklch(0.08 0.02 280);
+  --background-alt: oklch(0.06 0.025 280);
   --foreground: oklch(0.94 0.005 270);
   --card: oklch(0.12 0.025 280 / 60%);
   --card-foreground: oklch(0.94 0.005 270);

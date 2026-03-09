@@ -9,7 +9,7 @@ export function Hero() {
       </div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 animate-fade-in-up text-balance leading-[0.95]">
+        <h1 className="font-display text-6xl md:text-8xl lg:text-[7rem] font-light tracking-tighter mb-6 animate-fade-in-up text-balance leading-[0.95]">
           We Build{" "}
           <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-shimmer">
             AI-Powered

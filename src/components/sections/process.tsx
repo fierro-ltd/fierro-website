@@ -41,7 +41,7 @@ export function Process() {
   const { ref: stepsRef, isInView: stepsInView } = useInView(0.15);
 
   return (
-    <section id="process" className="relative py-28">
+    <section id="process" className="relative py-28 bg-background-alt">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
           <div className="text-center mb-16">

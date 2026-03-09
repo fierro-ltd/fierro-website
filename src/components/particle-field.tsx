@@ -199,6 +199,99 @@ export function ParticleField() {
     const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lines);
 
+    // --- Fog / Nebula background quad ---
+    const fogGeometry = new THREE.PlaneGeometry(800, 600);
+    const fogMaterial = new THREE.ShaderMaterial({
+      transparent: true,
+      depthWrite: false,
+      uniforms: {
+        uTime: { value: 0 },
+        uMouse: { value: new THREE.Vector2(0, 0) },
+        uColor1: { value: new THREE.Color(0x4338ca) },
+        uColor2: { value: new THREE.Color(0x7c3aed) },
+        uOpacity: { value: 0.15 },
+        uResolution: {
+          value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+        },
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform float uTime;
+        uniform vec2 uMouse;
+        uniform vec3 uColor1;
+        uniform vec3 uColor2;
+        uniform float uOpacity;
+        uniform vec2 uResolution;
+        varying vec2 vUv;
+
+        // Hash-based 2D pseudo-random
+        float hash2d(vec2 p) {
+          float h = dot(p, vec2(127.1, 311.7));
+          return fract(sin(h) * 43758.5453);
+        }
+
+        // 2D value noise
+        float noise2d(vec2 p) {
+          vec2 i = floor(p);
+          vec2 f = fract(p);
+          vec2 u = f * f * (3.0 - 2.0 * f);
+          return mix(
+            mix(hash2d(i), hash2d(i + vec2(1.0, 0.0)), u.x),
+            mix(hash2d(i + vec2(0.0, 1.0)), hash2d(i + vec2(1.0, 1.0)), u.x),
+            u.y
+          );
+        }
+
+        // FBM — 4 octaves
+        float fbm(vec2 p) {
+          float value = 0.0;
+          float amplitude = 0.5;
+          float frequency = 1.0;
+          for (int i = 0; i < 4; i++) {
+            value += amplitude * noise2d(p * frequency);
+            frequency *= 2.0;
+            amplitude *= 0.5;
+          }
+          return value;
+        }
+
+        void main() {
+          vec2 uv = vUv;
+
+          // Subtle mouse displacement (~3% UV shift)
+          uv += uMouse * 0.03;
+
+          // Layer multiple FBM octaves at different scales and speeds
+          float n1 = fbm(uv * 3.0 + uTime * 0.04);
+          float n2 = fbm(uv * 5.0 - uTime * 0.03 + 10.0);
+          float n3 = fbm(uv * 2.0 + uTime * 0.02 + vec2(n1, n2) * 0.5);
+          float n4 = fbm(uv * 7.0 - uTime * 0.05 + 20.0);
+
+          float noise = n1 * 0.4 + n2 * 0.25 + n3 * 0.25 + n4 * 0.1;
+
+          // Mix colors based on noise
+          vec3 color = mix(uColor1, uColor2, noise);
+
+          // Vignette — smooth alpha falloff toward edges
+          vec2 center = vUv - 0.5;
+          float vignette = 1.0 - dot(center, center) * 2.0;
+          vignette = smoothstep(0.0, 0.5, vignette);
+
+          float alpha = noise * vignette * uOpacity;
+          gl_FragColor = vec4(color, alpha);
+        }
+      `,
+    });
+    const fogQuad = new THREE.Mesh(fogGeometry, fogMaterial);
+    fogQuad.position.z = -100;
+    scene.add(fogQuad);
+
     // --- Mouse tracking ---
     const onMouseMove = (e: MouseEvent) => {
       mouseRef.current.x =
@@ -218,6 +311,10 @@ export function ParticleField() {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
+      fogMaterial.uniforms.uResolution.value.set(
+        window.innerWidth,
+        window.innerHeight
+      );
     };
     window.addEventListener("resize", onResize, { passive: true });
 
@@ -230,15 +327,22 @@ export function ParticleField() {
         particleMaterial.uniforms.uOpacity.value = 0.6;
         particleMaterial.blending = THREE.AdditiveBlending;
         lineMaterial.blending = THREE.AdditiveBlending;
+        fogMaterial.uniforms.uColor1.value.set(0x4338ca);
+        fogMaterial.uniforms.uColor2.value.set(0x7c3aed);
+        fogMaterial.uniforms.uOpacity.value = 0.15;
       } else {
         particleMaterial.uniforms.uColor.value.set(0x4338ca);
         particleMaterial.uniforms.uAccent.value.set(0x7c3aed);
         particleMaterial.uniforms.uOpacity.value = 0.5;
         particleMaterial.blending = THREE.NormalBlending;
         lineMaterial.blending = THREE.NormalBlending;
+        fogMaterial.uniforms.uColor1.value.set(0x3730a3);
+        fogMaterial.uniforms.uColor2.value.set(0x6d28d9);
+        fogMaterial.uniforms.uOpacity.value = 0.07;
       }
       particleMaterial.needsUpdate = true;
       lineMaterial.needsUpdate = true;
+      fogMaterial.needsUpdate = true;
     };
     updateTheme();
 
@@ -262,6 +366,13 @@ export function ParticleField() {
       }
 
       particleMaterial.uniforms.uTime.value = time;
+
+      // Update fog uniforms
+      fogMaterial.uniforms.uTime.value = time;
+      fogMaterial.uniforms.uMouse.value.set(
+        mouseRef.current.x / 350,
+        mouseRef.current.y / 250
+      );
 
       const posAttr = particleGeometry.getAttribute("position");
       const posArr = posAttr.array as Float32Array;
@@ -450,6 +561,8 @@ export function ParticleField() {
       particleMaterial.dispose();
       lineGeometry.dispose();
       lineMaterial.dispose();
+      fogGeometry.dispose();
+      fogMaterial.dispose();
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
