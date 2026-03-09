@@ -108,7 +108,7 @@ export function Contact() {
               <div className="flex items-center justify-center gap-6">
                 <a
                   href="mailto:hello@fierro.co.uk"
-                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-all duration-200 hover:translate-y-[-1px]"
                 >
                   <Mail className="size-4" aria-hidden="true" />
                   hello@fierro.co.uk
@@ -117,7 +117,7 @@ export function Contact() {
                   href="https://github.com/fierro-ltd"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-all duration-200 hover:translate-y-[-1px]"
                 >
                   <Github className="size-4" aria-hidden="true" />
                   GitHub
@@ -126,7 +126,7 @@ export function Contact() {
                   href="https://linkedin.com/company/fierro-ltd"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-all duration-200 hover:translate-y-[-1px]"
                 >
                   <Linkedin className="size-4" aria-hidden="true" />
                   LinkedIn

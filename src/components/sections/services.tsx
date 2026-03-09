@@ -35,7 +35,7 @@ export function Services() {
               const Icon = iconMap[service.icon];
               return (
                 <BentoCard key={service.title}>
-                  <div className="mb-4 inline-flex items-center justify-center w-11 h-11 rounded-xl bg-primary/10 text-primary">
+                  <div className="mb-4 inline-flex items-center justify-center w-11 h-11 rounded-xl bg-primary/10 text-primary transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:bg-primary/20 group-hover:scale-110">
                     {Icon && <Icon className="size-5" />}
                   </div>
                   <h3 className="font-display text-lg font-semibold mb-2">

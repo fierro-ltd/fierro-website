@@ -27,7 +27,7 @@ export function NavBar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+              className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 py-1 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.25,1,0.5,1)] hover:after:w-full"
             >
               {link.label}
             </a>
@@ -43,24 +43,37 @@ export function NavBar() {
             aria-label="Toggle menu"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
-            {mobileOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
+            <span
+              className="transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
+              style={{ transform: mobileOpen ? "rotate(90deg)" : "rotate(0deg)" }}
+            >
+              {mobileOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
+            </span>
           </Button>
         </div>
       </nav>
 
-      {/* Mobile nav */}
-      {mobileOpen && (
-        <div className="md:hidden border-t border-border/30 bg-background/80 backdrop-blur-xl">
-          <div className="px-4 py-4 space-y-3">
-            {navLinks.map((link) => (
+      {/* Mobile nav — animated with grid-template-rows */}
+      <div
+        className="md:hidden grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
+        style={{ gridTemplateRows: mobileOpen ? "1fr" : "0fr" }}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-border/30 bg-background/80 backdrop-blur-xl px-4 py-4 space-y-3">
+            {navLinks.map((link, i) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200"
+                style={{
+                  opacity: mobileOpen ? 1 : 0,
+                  transform: mobileOpen ? "translateX(0)" : "translateX(-8px)",
+                  transition: `opacity 300ms ${100 + i * 50}ms cubic-bezier(0.25,1,0.5,1), transform 300ms ${100 + i * 50}ms cubic-bezier(0.25,1,0.5,1)`,
+                }}
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -68,7 +81,7 @@ export function NavBar() {
             ))}
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

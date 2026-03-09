@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/fade-in";
+import { useInView } from "@/hooks/use-in-view";
 
 const steps = [
   {
@@ -21,7 +22,24 @@ const steps = [
   },
 ];
 
+function StepNumber({ number, isInView, delay }: { number: number; isInView: boolean; delay: number }) {
+  return (
+    <div
+      className="relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-base mb-5 shadow-[0_0_20px_var(--primary)/30%] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? "scale(1)" : "scale(0.5)",
+        transitionDelay: `${delay}ms`,
+      }}
+    >
+      {number}
+    </div>
+  );
+}
+
 export function Process() {
+  const { ref: stepsRef, isInView: stepsInView } = useInView(0.15);
+
   return (
     <section id="process" className="relative py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,29 +58,36 @@ export function Process() {
           </div>
         </FadeIn>
 
-        <FadeIn delay={200}>
-          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
-            {/* Connector line (desktop only) */}
-            <div className="hidden md:block absolute top-6 left-[calc(16.67%+1.5rem)] right-[calc(16.67%+1.5rem)] border-t-2 border-dashed border-primary/20" />
+        <div ref={stepsRef} className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
+          {/* Connector line (desktop only) — animates drawing in */}
+          <div
+            className="hidden md:block absolute top-6 left-[calc(16.67%+1.5rem)] right-[calc(16.67%+1.5rem)] border-t-2 border-dashed border-primary/20 origin-left transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+            style={{
+              transform: stepsInView ? "scaleX(1)" : "scaleX(0)",
+              transitionDelay: "200ms",
+            }}
+          />
 
-            {steps.map((step) => (
-              <div
-                key={step.number}
-                className="relative flex flex-col items-center text-center"
-              >
-                <div className="relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-base mb-5 shadow-[0_0_20px_var(--primary)/30%]">
-                  {step.number}
-                </div>
-                <h3 className="font-display text-xl font-semibold mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
+          {steps.map((step, i) => (
+            <div
+              key={step.number}
+              className="relative flex flex-col items-center text-center transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+              style={{
+                opacity: stepsInView ? 1 : 0,
+                transform: stepsInView ? "translateY(0)" : "translateY(16px)",
+                transitionDelay: `${i * 150}ms`,
+              }}
+            >
+              <StepNumber number={step.number} isInView={stepsInView} delay={i * 150 + 100} />
+              <h3 className="font-display text-xl font-semibold mb-2">
+                {step.title}
+              </h3>
+              <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

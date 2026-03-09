@@ -27,7 +27,12 @@ export function ThemeToggle() {
       onClick={() => setIsDark(!isDark)}
       aria-label="Toggle theme"
     >
-      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      <span
+        className="inline-flex transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+        style={{ transform: isDark ? "rotate(0deg)" : "rotate(360deg)" }}
+      >
+        {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      </span>
     </Button>
   );
 }
