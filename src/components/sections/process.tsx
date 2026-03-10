@@ -25,7 +25,7 @@ const steps = [
 function StepNumber({ number, isInView, delay }: { number: number; isInView: boolean; delay: number }) {
   return (
     <div
-      className="relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-base mb-5 shadow-[0_0_20px_var(--primary)/30%] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+      className="relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-base mb-5 shadow-[0_0_20px_var(--primary)/30%] transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
       style={{
         opacity: isInView ? 1 : 0,
         transform: isInView ? "scale(1)" : "scale(0.5)",
@@ -52,8 +52,8 @@ export function Process() {
               How We Work
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-              A streamlined process designed to move fast without cutting
-              corners.
+              A proven methodology that moves fast without compromising
+              quality.
             </p>
           </div>
         </FadeIn>
@@ -71,7 +71,7 @@ export function Process() {
           {steps.map((step, i) => (
             <div
               key={step.number}
-              className="relative flex flex-col items-center text-center transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+              className="relative flex flex-col items-center text-center transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
               style={{
                 opacity: stepsInView ? 1 : 0,
                 transform: stepsInView ? "translateY(0)" : "translateY(16px)",
@@ -79,7 +79,7 @@ export function Process() {
               }}
             >
               <StepNumber number={step.number} isInView={stepsInView} delay={i * 150 + 100} />
-              <h3 className="font-display text-xl font-semibold mb-2">
+              <h3 className="font-display text-xl font-semibold mb-2 text-balance">
                 {step.title}
               </h3>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">

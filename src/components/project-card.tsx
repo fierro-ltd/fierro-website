@@ -29,7 +29,7 @@ export function ProjectCard({ project }: { project: Project }) {
           )}
         />
 
-        <h3 className="font-display text-lg font-semibold mb-2">
+        <h3 className="font-display text-lg font-semibold mb-2 text-balance">
           {project.title}
         </h3>
 

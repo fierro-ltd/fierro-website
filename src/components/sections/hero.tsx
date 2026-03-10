@@ -9,17 +9,17 @@ export function Hero() {
       </div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="font-display text-6xl md:text-8xl lg:text-[7rem] font-light tracking-tighter mb-6 animate-fade-in-up text-balance leading-[0.95]">
-          We Build{" "}
+        <h1 className="font-display text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tighter mb-6 animate-fade-in-up text-balance leading-[0.95]">
+          Transforming Ideas Into{" "}
           <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-shimmer">
-            AI-Powered
+            Intelligent
           </span>{" "}
-          Software That&nbsp;Ships
+          Software
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 animate-fade-in-up [animation-delay:150ms] opacity-0 [animation-fill-mode:forwards] text-balance leading-relaxed">
-          FIERRO specialises in agentic AI, document intelligence, and
-          full-stack applications&nbsp;&mdash; from prototype to production.
+          We design and build AI-native systems that automate, reason, and
+          scale&nbsp;&mdash; from first prototype to production deployment.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up [animation-delay:300ms] opacity-0 [animation-fill-mode:forwards]">

@@ -21,7 +21,7 @@ export function BentoGrid({
     >
       {React.Children.map(children, (child, i) => (
         <div
-          className="transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+          className="transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
           style={{
             opacity: isInView ? 1 : 0,
             transform: isInView ? "translateY(0)" : "translateY(20px)",
@@ -47,7 +47,7 @@ export function BentoCard({
       className={cn(
         "group rounded-xl border border-border/50 bg-card backdrop-blur-md p-6",
         "hover:border-primary/40 hover:shadow-[0_0_30px_-5px_var(--primary)/15%]",
-        "transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]",
+        "transition-[opacity,transform,shadow] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]",
         "hover:translate-y-[-2px]",
         className
       )}

@@ -13,11 +13,11 @@ export function Portfolio() {
               Portfolio
             </p>
             <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4 text-balance">
-              Our Work
+              Impact in Action
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-              Live demos and production systems we&rsquo;ve built for clients
-              and as open-source references.
+              Production systems and live platforms we&rsquo;ve shipped for
+              clients across regulated industries.
             </p>
           </div>
         </FadeIn>

@@ -27,7 +27,7 @@ export function NavBar() {
             <a
               key={link.href}
               href={link.href}
-              className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 py-1 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 after:ease-[cubic-bezier(0.25,1,0.5,1)] hover:after:w-full"
+              className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 py-1 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 after:ease-[cubic-bezier(0.25,1,0.5,1)] hover:after:w-full"
             >
               {link.label}
             </a>
@@ -68,7 +68,7 @@ export function NavBar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200"
+                className="block text-sm font-medium text-muted-foreground hover:text-foreground transition-[color,transform] duration-200"
                 style={{
                   opacity: mobileOpen ? 1 : 0,
                   transform: mobileOpen ? "translateX(0)" : "translateX(-8px)",

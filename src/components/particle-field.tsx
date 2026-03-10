@@ -329,7 +329,7 @@ export function ParticleField() {
         lineMaterial.blending = THREE.AdditiveBlending;
         fogMaterial.uniforms.uColor1.value.set(0x4338ca);
         fogMaterial.uniforms.uColor2.value.set(0x7c3aed);
-        fogMaterial.uniforms.uOpacity.value = 0.15;
+        fogMaterial.uniforms.uOpacity.value = 0.08;
       } else {
         particleMaterial.uniforms.uColor.value.set(0x4338ca);
         particleMaterial.uniforms.uAccent.value.set(0x7c3aed);
@@ -338,7 +338,7 @@ export function ParticleField() {
         lineMaterial.blending = THREE.NormalBlending;
         fogMaterial.uniforms.uColor1.value.set(0x3730a3);
         fogMaterial.uniforms.uColor2.value.set(0x6d28d9);
-        fogMaterial.uniforms.uOpacity.value = 0.07;
+        fogMaterial.uniforms.uOpacity.value = 0.04;
       }
       particleMaterial.needsUpdate = true;
       lineMaterial.needsUpdate = true;
@@ -352,11 +352,13 @@ export function ParticleField() {
       attributeFilter: ["class"],
     });
 
-    // --- Animation ---
+    // --- Animation with visibility pausing ---
     let frameId: number;
     let time = 0;
+    let running = true;
 
     const animate = () => {
+      if (!running) return;
       frameId = requestAnimationFrame(animate);
       time += 0.016;
 
@@ -548,10 +550,23 @@ export function ParticleField() {
       renderer.render(scene, camera);
     };
 
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        running = false;
+        cancelAnimationFrame(frameId);
+      } else {
+        running = true;
+        animate();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
     animate();
 
     return () => {
+      running = false;
       cancelAnimationFrame(frameId);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       window.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseleave", onMouseLeave);
       window.removeEventListener("resize", onResize);

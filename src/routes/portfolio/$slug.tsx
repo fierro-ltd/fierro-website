@@ -86,7 +86,7 @@ function PortfolioDetailPage() {
 
       {/* Features section */}
       <div className="mb-12">
-        <h2 className="font-display text-2xl font-semibold mb-6">
+        <h2 className="font-display text-2xl font-semibold mb-6 text-balance">
           Key Features
         </h2>
         <ul className="space-y-3">
@@ -104,7 +104,7 @@ function PortfolioDetailPage() {
 
       {/* Tech stack section */}
       <div className="mb-12">
-        <h2 className="font-display text-2xl font-semibold mb-6">
+        <h2 className="font-display text-2xl font-semibold mb-6 text-balance">
           Tech Stack
         </h2>
         <div className="flex flex-wrap gap-2">
