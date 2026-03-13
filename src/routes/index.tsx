@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/sections/hero";
 import { Services } from "@/components/sections/services";
-import { Process } from "@/components/sections/process";
 import { Portfolio } from "@/components/sections/portfolio";
-import { Contact } from "@/components/sections/contact";
+import { FAQ } from "@/components/sections/faq";
+import { CTABanner } from "@/components/cta-banner";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -14,9 +14,9 @@ function HomePage() {
     <>
       <Hero />
       <Services />
-      <Process />
       <Portfolio />
-      <Contact />
+      <FAQ />
+      <CTABanner />
     </>
   );
 }

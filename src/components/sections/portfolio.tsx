@@ -1,33 +1,39 @@
-import { BentoGrid } from "@/components/bento-grid";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { ProjectCard } from "@/components/project-card";
 import { FadeIn } from "@/components/fade-in";
 import { projects } from "@/data/projects";
 
 export function Portfolio() {
   return (
-    <section id="portfolio" className="relative py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
-              Portfolio
-            </p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4 text-balance">
-              Impact in Action
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-              Production systems and live platforms we&rsquo;ve shipped for
-              clients across regulated industries.
-            </p>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
+                Our work
+              </p>
+              <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-balance">
+                Featured projects
+              </h2>
+            </div>
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 shrink-0"
+            >
+              All projects
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
         </FadeIn>
 
-        <FadeIn delay={200}>
-          <BentoGrid>
-            {projects.map((project) => (
+        <FadeIn delay={150}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.slice(0, 4).map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
-          </BentoGrid>
+          </div>
         </FadeIn>
       </div>
     </section>
