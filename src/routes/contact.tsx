@@ -9,6 +9,9 @@ import { FAQ } from "@/components/sections/faq";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
+  head: () => ({
+    meta: [{ title: "Contact — FIERRO" }],
+  }),
 });
 
 function ContactPage() {
@@ -18,10 +21,11 @@ function ContactPage() {
     const data = new FormData(form);
     const name = data.get("name") as string;
     const email = data.get("email") as string;
+    const company = data.get("company") as string;
     const message = data.get("message") as string;
 
     const subject = encodeURIComponent(`New enquiry from ${name}`);
-    const body = encodeURIComponent(`From: ${name} (${email})\n\n${message}`);
+    const body = encodeURIComponent(`From: ${name} (${email})${company ? `\nCompany: ${company}` : ""}\n\n${message}`);
     window.location.href = `mailto:hello@fierro.co.uk?subject=${subject}&body=${body}`;
   }
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { FadeIn } from "@/components/fade-in";
 import { cn } from "@/lib/utils";
@@ -6,14 +6,19 @@ import { faqItems } from "@/data/faq";
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
+  const id = useId();
+  const panelId = `${id}-panel`;
+  const buttonId = `${id}-button`;
 
   return (
     <div className="border-b border-border/50">
       <button
+        id={buttonId}
         type="button"
         className="flex w-full items-center justify-between py-5 text-left cursor-pointer"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
+        aria-controls={panelId}
       >
         <span className="text-base font-medium pr-4">{question}</span>
         <ChevronDown
@@ -25,6 +30,9 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         />
       </button>
       <div
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
         className="grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
         style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
       >

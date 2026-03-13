@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +14,11 @@ export function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const routerState = useRouterState();
   const currentPath = routerState.location.pathname;
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [currentPath]);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/70 backdrop-blur-xl border-b border-border/40">

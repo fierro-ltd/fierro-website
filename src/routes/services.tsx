@@ -1,20 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Bot, FileSearch, Code, Lightbulb } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { FadeIn } from "@/components/fade-in";
 import { CTABanner } from "@/components/cta-banner";
 import { services } from "@/data/services";
+import { serviceIconMap } from "@/data/service-icons";
 
 export const Route = createFileRoute("/services")({
   component: ServicesPage,
+  head: () => ({
+    meta: [{ title: "Services — FIERRO" }],
+  }),
 });
-
-const iconMap: Record<string, React.ElementType> = {
-  Bot,
-  FileSearch,
-  Code,
-  Lightbulb,
-};
 
 const extendedInfo: Record<string, { details: string; useCases: string[] }> = {
   "Agentic AI Systems": {
@@ -71,7 +67,7 @@ function ServicesPage() {
       <section className="pb-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           {services.map((service, i) => {
-            const Icon = iconMap[service.icon];
+            const Icon = serviceIconMap[service.icon];
             const extra = extendedInfo[service.title];
             return (
               <FadeIn key={service.title} delay={i * 100}>

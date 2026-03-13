@@ -15,7 +15,7 @@ export function Hero() {
           Boutique Software Factory
         </p>
 
-        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 animate-fade-in-up [animation-delay:100ms] opacity-0 [animation-fill-mode:forwards] text-balance leading-[1.05]">
+        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 animate-fade-in-up [animation-delay:100ms] [animation-fill-mode:forwards] motion-safe:opacity-0 text-balance leading-[1.05]">
           We build{" "}
           <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-shimmer">
             intelligent
@@ -23,11 +23,11 @@ export function Hero() {
           systems
         </h1>
 
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 animate-fade-in-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards] text-balance leading-relaxed">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 animate-fade-in-up [animation-delay:200ms] [animation-fill-mode:forwards] motion-safe:opacity-0 text-balance leading-relaxed">
           AI-native applications that automate, reason, and scale &mdash; from first prototype to production deployment.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up [animation-delay:350ms] opacity-0 [animation-fill-mode:forwards]">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up [animation-delay:350ms] [animation-fill-mode:forwards] motion-safe:opacity-0">
           <Button size="lg" className="group" asChild>
             <Link to="/projects">
               View our work

@@ -1,15 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { Bot, FileSearch, Code, Lightbulb, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { BentoGrid, BentoCard } from "@/components/bento-grid";
 import { FadeIn } from "@/components/fade-in";
 import { services } from "@/data/services";
-
-const iconMap: Record<string, React.ElementType> = {
-  Bot,
-  FileSearch,
-  Code,
-  Lightbulb,
-};
+import { serviceIconMap } from "@/data/service-icons";
 
 export function Services() {
   return (
@@ -38,7 +32,7 @@ export function Services() {
         <FadeIn delay={150}>
           <BentoGrid>
             {services.map((service) => {
-              const Icon = iconMap[service.icon];
+              const Icon = serviceIconMap[service.icon];
               return (
                 <BentoCard key={service.title}>
                   <div className="mb-4 inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary">

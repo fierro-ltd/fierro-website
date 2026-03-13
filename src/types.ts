@@ -8,7 +8,6 @@ export interface Project {
   features: string[];
   techStack: string[];
   demoUrl: string;
-  gridSpan?: "wide" | "normal";
 }
 
 export interface Service {

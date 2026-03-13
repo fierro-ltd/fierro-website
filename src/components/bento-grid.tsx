@@ -46,7 +46,7 @@ export function BentoCard({
     <div
       className={cn(
         "group rounded-xl border border-border/50 bg-card backdrop-blur-md p-6",
-        "hover:border-primary/40 hover:shadow-[0_0_30px_-5px_var(--primary)/15%]",
+        "hover:border-primary/40 hover:shadow-[0_0_30px_-5px_oklch(from_var(--primary)_l_c_h/0.15)]",
         "transition-[opacity,transform,shadow] duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]",
         "hover:translate-y-[-2px]",
         className
